@@ -1,1 +1,9 @@
 # Illumio_Coding_Assignment
+
+a. I tested my solution by using the provided rules and checking the normal and edge cases of every rule. For example, one of the port ranges were 10000-20000, I tested 9999, 10000, 15000, 20000, and 20001. For the ip addresses, I tested it similarly. For example, if the range were 192.168.1.1-192.168.2.5, I would test 192.168.1.0, 192.168.2.6, 192.168.3.0, and an address that would normally work like 192.168.1.5.
+
+b. At first, I was thinking of checking if the connection and protocol match separately in a list, but realized that would be inefficient since it would have to loop through the entire list. Since there were only four possible combinations of inbound/outbound and tcp/udp, I decided to create a dictionary using a tuple of the connection and protocol as the key. This allows for constant time lookup when accepting packets. The value of that key would be a list of two dictionaries; one for ports and one for ip addresses. Both of those use the same dictionary structure. The dictionary used consisted of two keys: single and range. The single key would contain a set of single items such as a singular port or ip address while the range key would contain a set of ranges such as a range of ports or a range of ip addresses. This would allow constant time lookup if the port or ip address were already in the set. If it wasn’t, there would be a for loop through the items in the range set to determine whether the port or ip address is valid.
+
+c. There are a few things I could have done with more time. I feel like the structure I used to store the rules is a bit messy. I would also try to reduce space complexity by considering whether the port or ip address is already in range when adding to the set of singular items. I also feel like there might have been a more efficient method to check for ranges.
+
+1. Policy Team 2. Data Team 3. Platform Team
