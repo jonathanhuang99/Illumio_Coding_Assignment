@@ -96,52 +96,52 @@ class Firewall:
             return False
         return (valid_port(direction, protocol, port, ip_address) and valid_ip(direction, protocol, port, ip_address))
 
-if __name__ == "__main__":
-
-    fw = Firewall('rules.csv')
-    fw.process_rules()
-    print("-------Sample Test Cases-------")
-    print(fw.accept_packet("inbound", "tcp", 80, "192.168.1.2"))
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.1"))
-    print(fw.accept_packet("outbound", "tcp", 10234, "192.168.10.11"))
-    print(fw.accept_packet("inbound", "tcp", 81, "192.168.1.2"))
-    print(fw.accept_packet("inbound", "udp", 24, "52.12.48.92"))
-    
-    print("-------My Test Cases-------") ## Rule 3
-    print(fw.accept_packet("outbound", "tcp", 9999, "192.168.10.11")) ## False
-    print(fw.accept_packet("outbound", "tcp", 10000, "192.168.10.11")) ## True
-    print(fw.accept_packet("outbound", "tcp", 15000, "192.168.10.11")) ## True
-    print(fw.accept_packet("outbound", "tcp", 20000, "192.168.10.11")) ## True
-    print(fw.accept_packet("outbound", "tcp", 20001, "192.168.10.11")) ## False
-    
-    print("\n-----------------------------------------------\n") ## Rule 4
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.1.0")) ## False
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.1.1")) ## True
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.1.9")) ## True
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.0")) ## True
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.1")) ## True
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.5")) ## True
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.6")) ## False
-    print(fw.accept_packet("inbound", "udp", 53, "192.168.3.0")) ## False
-    
-    print("\n-----------------------------------------------\n") ## Rule 5
-    print(fw.accept_packet("outbound", "udp", 999, "52.12.48.92")) ## False
-    print(fw.accept_packet("outbound", "udp", 1000, "52.12.48.92")) ## True
-    print(fw.accept_packet("outbound", "udp", 1500, "52.12.48.92")) ## True
-    print(fw.accept_packet("outbound", "udp", 2000, "52.12.48.92")) ## True
-    print(fw.accept_packet("outbound", "udp", 2001, "52.12.48.92")) ## False
-
-    print("\n-----------------------------------------------\n") ## Rule 6
-    print(fw.accept_packet("inbound", "tcp", 81, "-1.-1.-1.-1")) ## False
-    print(fw.accept_packet("inbound", "tcp", 81, "255.255.255.255")) ## True
-    print(fw.accept_packet("inbound", "tcp", 81, "256.256.256.256")) ## False
-    
-    print("\n-----------------------------------------------\n") ## Rule 7
-    print(fw.accept_packet("outbound", "udp", 77, "199.169.1.1")) ## True
-    print(fw.accept_packet("outbound", "udp", 77, "198.169.1.1")) ## True
-    print(fw.accept_packet("outbound", "udp", 77, "201.169.1.1")) ## False
-    print(fw.accept_packet("outbound", "udp", 77, "192.168.1.1")) ## True
-    print(fw.accept_packet("outbound", "udp", 77, "201.0.0.0")) ## True
+##if __name__ == "__main__":
+##
+##    fw = Firewall('rules.csv')
+##    fw.process_rules()
+##    print("-------Sample Test Cases-------")
+##    print(fw.accept_packet("inbound", "tcp", 80, "192.168.1.2"))
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.1"))
+##    print(fw.accept_packet("outbound", "tcp", 10234, "192.168.10.11"))
+##    print(fw.accept_packet("inbound", "tcp", 81, "192.168.1.2"))
+##    print(fw.accept_packet("inbound", "udp", 24, "52.12.48.92"))
+##    
+##    print("-------My Test Cases-------") ## Rule 3
+##    print(fw.accept_packet("outbound", "tcp", 9999, "192.168.10.11")) ## False
+##    print(fw.accept_packet("outbound", "tcp", 10000, "192.168.10.11")) ## True
+##    print(fw.accept_packet("outbound", "tcp", 15000, "192.168.10.11")) ## True
+##    print(fw.accept_packet("outbound", "tcp", 20000, "192.168.10.11")) ## True
+##    print(fw.accept_packet("outbound", "tcp", 20001, "192.168.10.11")) ## False
+##    
+##    print("\n-----------------------------------------------\n") ## Rule 4
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.1.0")) ## False
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.1.1")) ## True
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.1.9")) ## True
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.0")) ## True
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.1")) ## True
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.5")) ## True
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.2.6")) ## False
+##    print(fw.accept_packet("inbound", "udp", 53, "192.168.3.0")) ## False
+##    
+##    print("\n-----------------------------------------------\n") ## Rule 5
+##    print(fw.accept_packet("outbound", "udp", 999, "52.12.48.92")) ## False
+##    print(fw.accept_packet("outbound", "udp", 1000, "52.12.48.92")) ## True
+##    print(fw.accept_packet("outbound", "udp", 1500, "52.12.48.92")) ## True
+##    print(fw.accept_packet("outbound", "udp", 2000, "52.12.48.92")) ## True
+##    print(fw.accept_packet("outbound", "udp", 2001, "52.12.48.92")) ## False
+##
+##    print("\n-----------------------------------------------\n") ## Rule 6
+##    print(fw.accept_packet("inbound", "tcp", 81, "-1.-1.-1.-1")) ## False
+##    print(fw.accept_packet("inbound", "tcp", 81, "255.255.255.255")) ## True
+##    print(fw.accept_packet("inbound", "tcp", 81, "256.256.256.256")) ## False
+##    
+##    print("\n-----------------------------------------------\n") ## Rule 7
+##    print(fw.accept_packet("outbound", "udp", 77, "199.169.1.1")) ## True
+##    print(fw.accept_packet("outbound", "udp", 77, "198.169.1.1")) ## True
+##    print(fw.accept_packet("outbound", "udp", 77, "201.169.1.1")) ## False
+##    print(fw.accept_packet("outbound", "udp", 77, "192.168.1.1")) ## True
+##    print(fw.accept_packet("outbound", "udp", 77, "201.0.0.0")) ## True
     
 
     
